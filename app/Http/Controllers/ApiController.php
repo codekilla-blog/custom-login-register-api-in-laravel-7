@@ -15,10 +15,10 @@ class ApiController extends Controller
         $user = User::where('email', $request->email)->first();
         if (!empty($user)) {
             if (!Hash::check($request->password, $user->password)) {
-                return response()->json(['success'=>false, 'message' => 'Login Fail, pls check password']);
-             }
-                return new UserResource($user);
-        }else{
+                return response()->json(['success' => false, 'message' => 'Login Fail, pls check password']);
+            }
+            return new UserResource($user);
+        } else {
             return json_encode(['error' => 'Login Fail, pls check  email']);
         }
     }
